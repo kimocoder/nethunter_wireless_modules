@@ -6,12 +6,13 @@ EXTRA_CFLAGS += -Wno-unused-label
 #EXTRA_CFLAGS += -Wno-unused-parameter
 EXTRA_CFLAGS += -Wno-unused-function
 EXTRA_CFLAGS += -Wno-implicit-fallthrough
-#EXTRA_CFLAGS += -Wno-cast-function-type
+EXTRA_CFLAGS += -Wno-cast-function-type
 #EXTRA_CFLAGS += -Wno-error=cast-function-type
 #EXTRA_CFLAGS += -Wno-parentheses-equality
 #EXTRA_CFLAGS += -Wno-pointer-bool-conversion
 EXTRA_CFLAGS += -Wno-unknown-pragmas
 #EXTRA_CFLAGS += -Wno-unused
+EXTRA_CFLAGS += -Wno-address
 EXTRA_CFLAGS += -Wno-vla -g
 
 #GCC_VER_49 := $(shell echo `$(CC) -dumpversion | cut -f1-2 -d.` \>= 4.9 | bc )
@@ -1149,7 +1150,7 @@ EXTRA_CFLAGS += -DCONFIG_IOCTL_CFG80211 -DRTW_USE_CFG80211_STA_EVENT
 SUBARCH := $(shell uname -m | sed -e "s/i.86/i386/; s/ppc/powerpc/; s/armv.l/arm/; s/aarch64/arm64/;")
 ARCH ?= $(SUBARCH)
 CROSS_COMPILE ?=
-KVER  := $(shell uname -r)
+KVER  ?= $(shell uname -r)
 KSRC := /lib/modules/$(KVER)/build
 MODDESTDIR := /lib/modules/$(KVER)/kernel/drivers/net/wireless/
 INSTALL_PREFIX :=
